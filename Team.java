@@ -5,7 +5,6 @@ public class Team{
 
 	String name;								//name of team
 	List<Player> players = new ArrayList();		//list of player names
-	List<User> coaches = new ArrayList();		//list of coaches of the team
 	int wins = 0, losses = 0;					//total wins and losses for the team, each object starts with 0
 
 	public Team(String name){					//constructor for team
@@ -59,15 +58,6 @@ public class Team{
 			}
 		}
 	}	
-
-	public void delCoach(User coachDel){				//remove a coach from the team
-		for(int i = 0; i <= coaches.size(); i++){
-			if(coaches.get(i) == coachDel){				//this might not work... not sure if you can compare it directly like this. could change it to check for coach name.
-				players.remove(i);
-				return;
-			}
-		}	
-	}
 
 	public void removeWin(){					//remove a win
 		wins--;

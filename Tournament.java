@@ -5,7 +5,6 @@ public class Tournament{
 
 	List<Team> teams = new ArrayList();						//the teams in the tournament
 	List<Match> matches = new ArrayList();					//the matches in the tournament
-	List<User> users = new ArrayList();						//the users in the tournament
 	Format format;											//the format of the tournament
 	String deadline, name;									//the deadline to sign up for the tournament and the name of the tournament
 
@@ -58,6 +57,10 @@ public class Tournament{
 	public void delTeam(Team newTeam){						//removes a team from the tournament
 		//deletes team newTeam
 	}
+	
+	public Team getTeams(Team teams){
+		return teams;
+	}
 
 	public boolean isDeadline(){							//return if the deadline has passed
 		//compare current date/time with deadline
@@ -73,18 +76,5 @@ public class Tournament{
 	}
 
 	public void editSchedule(){								//edits the schedule of the tournament
-	}
-
-	public void addUser(User newUser){						//add a user to the tournament
-		users.add(newUser);
-	}
-
-	public void removeUser(User removeUser){				//remove a user from the tournament
-		for(int i = 0; i <= users.size(); i++){
-			if(users.get(i) == removeUser){					//this might not work... not sure if you can compare it directly like this. could change it to check for users name.
-				users.remove(i);
-				return;
-			}
-		}
 	}
 }
