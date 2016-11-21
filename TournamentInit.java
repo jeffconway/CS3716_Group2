@@ -44,19 +44,7 @@ public class TournamentInit {
 	}
 
 	private void checkGUI() { 
-		f2 = new JFrame("Tournament List");
-		f2.setSize(400,800);
-      	f2.setLayout(new GridLayout(tournaments.size(), 1));
-		for (int i=0; i<tournaments.size();i++) {
-			JPanel p1 = new JPanel();
-			JPanel p2 = new JPanel();
-			JLabel l1 = new JLabel((i+1)+". "+"Name: \t"+tournaments.get(i).getName());
-			p1.add(l1);
-			JLabel l2 = new JLabel("Deadline: \t"+tournaments.get(i).getDeadline());
-			p2.add(l2);
-			f2.add(p1);
-			f2.add(p2);
-		}
+		f2 = new ListFrame(tournaments);
 		f2.setVisible(true);
 	}
 
