@@ -7,7 +7,7 @@ class teamFrame extends JFrame {
 	JLabel name,deadline;
 	JPanel p1,p2;
 	
-	teamFrame(Tournament T) {
+	teamFrame(Tournament t) {
 		setTitle("Edit Team");
 		setSize(400,400);
    		setLayout(new GridLayout(2, 1));
@@ -19,7 +19,7 @@ class teamFrame extends JFrame {
 		deadline = new JLabel("Deadline: " + t.getDeadline());
 		p1.add(name);
 		p2.add(deadline);
-		this.add(p1);
-		this.add(p2);
+		add(p1);
+		add(p2);
 	}
 }
