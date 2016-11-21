@@ -34,6 +34,16 @@ public class TournamentFrame extends JFrame implements ActionListener {
 		errorLabel = new JLabel("");
 		
         division.addActionListener(this);
+		single.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!divLabel.getText().trim().isEmpty()) {
+					divLabel.setText("");
+					p21.remove(numDiv);
+					p21.revalidate();
+					p21.repaint();
+				}
+			}
+		});
         
         ButtonGroup group = new ButtonGroup();
         group.add(single);
@@ -98,5 +108,7 @@ public class TournamentFrame extends JFrame implements ActionListener {
 		divLabel.setText("Enter the desired number of Divisions: ");
 		numDiv = new JTextField(5);
 		p21.add(numDiv);
+		p21.revalidate();
+		p21.repaint();
 	}
 }
