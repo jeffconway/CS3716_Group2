@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class TournamentFrame extends JFrame implements ActionListener {
+public class TournamentFrame extends JFrame {
 	/**
 	 * 
 	 */
@@ -33,7 +33,15 @@ public class TournamentFrame extends JFrame implements ActionListener {
 		submit = new JButton("Submit");
 		errorLabel = new JLabel("");
 		
-        division.addActionListener(this);
+        division.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				divLabel.setText("Enter the desired number of Divisions: ");
+				numDiv = new JTextField(5);
+				p21.add(numDiv);
+				p21.revalidate();
+				p21.repaint();
+			}
+		});
 		single.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(!divLabel.getText().trim().isEmpty()) {
@@ -101,14 +109,5 @@ public class TournamentFrame extends JFrame implements ActionListener {
 		add(p2);
 		add(p21);
 		add(p3);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		divLabel.setText("Enter the desired number of Divisions: ");
-		numDiv = new JTextField(5);
-		p21.add(numDiv);
-		p21.revalidate();
-		p21.repaint();
 	}
 }
