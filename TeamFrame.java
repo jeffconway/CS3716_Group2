@@ -7,12 +7,15 @@ class TeamFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	static Tournament to;
 	JLabel name,deadline;
 	JButton b1,b2;
 	JComboBox cb;
 	JPanel p1,p2;
+	AddTeamFrame f1;
 	
 	TeamFrame(Tournament t) {
+		to = t;
 		setTitle("Edit Team");
 		setSize(400,400);
    		setLayout(new GridLayout(2, 1));
@@ -31,13 +34,14 @@ class TeamFrame extends JFrame {
 		b1 = new JButton("Add Team");
 		b1.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
-				//JOptionPane.showMessageDialog(this,"Add Team!");
+				f1 = new AddTeamFrame(to);
+				f1.setVisible(true);
 		   	 }          
 		 });
 		b2 = new JButton("Edit Team");
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
-				//JOptionPane.showMessageDialog(this,"Edit Team!");
+				JOptionPane.showMessageDialog(null,"Edit Team!");
 		   	 }          
 		 });
 		
