@@ -24,6 +24,7 @@ public class TournamentFrame extends JFrame {
 		mLabel = new JLabel("Enter Maximum Number Teams: ");
 		maxTeams = new JTextField(10);
 		submit = new JButton("Submit");
+		errorLabel = new JLabel("");
 		p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
 		p2 = new JPanel();
@@ -37,7 +38,12 @@ public class TournamentFrame extends JFrame {
 		
 		submit.addActionListener(new ActionListener() {
        		public void actionPerformed(ActionEvent e) {
-       			if ((name != null) || (deadline != null) || (location !=null) || (maxTeams != null)) {
+       			if ((name.getText().trim().isEmpty()) || (deadline.getText().trim().isEmpty()) || (location.getText().trim().isEmpty()) || (maxTeams.getText().trim().isEmpty())) {
+       				errorLabel.setForeground(Color.RED);
+       				errorLabel.setText("Must fill out all fields to create Tournament!");
+       				p3.add(errorLabel);
+       			}
+       			else {
 	           		JOptionPane.showMessageDialog(null, "Tournament Created!");
 					String n = name.getText();
 					String d = deadline.getText();
@@ -46,10 +52,6 @@ public class TournamentFrame extends JFrame {
 					//System.out.println("Name: " + tour.get(0).getName());
 					//System.out.println("Deadline: " + tournaments.get(0).getDeadline());
 					dispose();
-       			}
-       			else {
-       				errorLabel = new JLabel("Must fill out all fields to create Tournament");
-       				p1.add(errorLabel);
        			}
        	 	}          
       	});
@@ -63,6 +65,7 @@ public class TournamentFrame extends JFrame {
 		p2.add(mLabel);	
 		p2.add(maxTeams);
 		p3.add(submit);	
+		p3.add(errorLabel);
 
 		add(p1);
 		add(p2);	
