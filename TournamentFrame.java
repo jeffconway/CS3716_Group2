@@ -1,11 +1,14 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
 
 public class TournamentFrame extends JFrame {
-	JTextField name,deadline;
-	JLabel nLabel,dLabel;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	JTextField name,deadline, location, maxTeams;
+	JLabel nLabel,dLabel, lLabel, mLabel, errorLabel;
 	JButton submit;
 	JPanel p1,p2,p3;
 	static java.util.List<Tournament> to;
@@ -15,7 +18,11 @@ public class TournamentFrame extends JFrame {
 		nLabel = new JLabel("Enter Name: ");
 		name = new JTextField(20);
 		dLabel = new JLabel("Enter Deadline: ");
-		deadline = new JTextField(20);
+		deadline = new JTextField(10);
+		lLabel = new JLabel("Enter Location: ");
+		location = new JTextField(20);
+		mLabel = new JLabel("Enter Maximum Number Teams: ");
+		maxTeams = new JTextField(10);
 		submit = new JButton("Submit");
 		p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
@@ -30,21 +37,31 @@ public class TournamentFrame extends JFrame {
 		
 		submit.addActionListener(new ActionListener() {
        		public void actionPerformed(ActionEvent e) {
-           		JOptionPane.showMessageDialog(null, "Tournament Created!");
-				String n = name.getText();
-				String d = deadline.getText();
-				Tournament t = new Tournament(d,n);
-				to.add(t);
-				//System.out.println("Name: " + tour.get(0).getName());
-				//System.out.println("Deadline: " + tournaments.get(0).getDeadline());
-				dispose();
+       			if ((name != null) || (deadline != null) || (location !=null) || (maxTeams != null)) {
+	           		JOptionPane.showMessageDialog(null, "Tournament Created!");
+					String n = name.getText();
+					String d = deadline.getText();
+					Tournament t = new Tournament(d,n);
+					to.add(t);
+					//System.out.println("Name: " + tour.get(0).getName());
+					//System.out.println("Deadline: " + tournaments.get(0).getDeadline());
+					dispose();
+       			}
+       			else {
+       				errorLabel = new JLabel("Must fill out all fields to create Tournament");
+       				p1.add(errorLabel);
+       			}
        	 	}          
       	});
 
 		p1.add(nLabel);		
 		p1.add(name);	
 		p2.add(dLabel);	
-		p2.add(deadline);	
+		p2.add(deadline);
+		p1.add(lLabel);		
+		p1.add(location);	
+		p2.add(mLabel);	
+		p2.add(maxTeams);
 		p3.add(submit);	
 
 		add(p1);

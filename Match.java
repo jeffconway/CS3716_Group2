@@ -2,6 +2,7 @@ public class Match{
 
 	Team team1, team2;							//teams in match
 	float team1Score, team2Score;				//the score of the teams
+	int team1rank, team2rank;
 
 	public Team getTeam1(){						//get first team
 		return team1;
@@ -45,5 +46,13 @@ public class Match{
 
 	public void setTeam2Score(float score){		//set second team score
 		team2Score = score;
+	}
+	
+	public void setTeam1Rank(int rank){
+		team1rank = rank;
+	}
+	
+	public void setTeam2Rank(int rank){
+		team2rank = rank;
 	}
 }

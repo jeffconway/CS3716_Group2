@@ -12,9 +12,8 @@ public class Divisions implements Format{
 	}
 
 	@Override
-	public Team[] setSchedule(Tournament tournament) {
+	public void setSchedule(Tournament tournament) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override

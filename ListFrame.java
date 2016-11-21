@@ -1,10 +1,9 @@
 import java.awt.*; 
 import java.awt.event.*;
 import javax.swing.*;
-import java.util.*;
 
 class ListFrame extends JFrame {
-	teamFrame f;
+	TeamFrame f;
  	JPanel p1,p2,p3;
  	JLabel l1,l2;
 	static int i;
@@ -28,7 +27,7 @@ class ListFrame extends JFrame {
 			b.addActionListener(new ActionListener() {
 				final int j=i+1;
 		   		public void actionPerformed(ActionEvent e) {
-					f = new teamFrame(to.get(j-1));
+					f = new TeamFrame(to.get(j-1));
 					f.setVisible(true);
 		   	 	}          
 		  	});
