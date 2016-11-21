@@ -39,44 +39,7 @@ public class TournamentInit {
    }  
 
 	private void tournamentGUI() {
-		JLabel nLabel = new JLabel("Enter Name: ");
-		name = new JTextField(20);
-		JLabel dLabel = new JLabel("Enter Deadline: ");
-		deadline = new JTextField(20);
-		JButton submit = new JButton("Submit");
-		JPanel p1 = new JPanel();
-		p1.setLayout(new FlowLayout());
-		JPanel p2 = new JPanel();
-		p2.setLayout(new FlowLayout());
-		JPanel p3 = new JPanel();
-		p3.setLayout(new FlowLayout());
-
-		f1 = new JFrame("Create Tournament");
-      	f1.setSize(400,400);
-      	f1.setLayout(new GridLayout(3, 1));
-		
-		submit.addActionListener(new ActionListener() {
-       		public void actionPerformed(ActionEvent e) {
-           		JOptionPane.showMessageDialog(null, "Tournament Created!");
-				String n = name.getText();
-				String d = deadline.getText();
-				Tournament t = new Tournament(d,n);
-				tournaments.add(t);
-				System.out.println("Name: " + tournaments.get(0).getName());
-				System.out.println("Deadline: " + tournaments.get(0).getDeadline());
-				f1.dispose();
-       	 	}          
-      	});
-
-		p1.add(nLabel);		
-		p1.add(name);	
-		p2.add(dLabel);	
-		p2.add(deadline);	
-		p3.add(submit);	
-
-		f1.add(p1);
-		f1.add(p2);	
-		f1.add(p3);
+		f1 = new TournamentFrame(tournaments);
 		f1.setVisible(true);
 	}
 
