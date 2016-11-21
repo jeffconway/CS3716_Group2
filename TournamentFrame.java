@@ -2,15 +2,16 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class TournamentFrame extends JFrame {
+public class TournamentFrame extends JFrame implements ActionListener {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JTextField name,deadline, location, maxTeams;
-	JLabel nLabel,dLabel, lLabel, mLabel, errorLabel;
+	JTextField name,deadline, location, maxTeams, numDiv;
+	JLabel nLabel,dLabel, lLabel, mLabel, errorLabel, fLabel, divLabel;
 	JButton submit;
-	JPanel p1,p2,p3;
+	JRadioButton single, division;
+	JPanel p1,p2,p21,p3;
 	static java.util.List<Tournament> to;
 
 	TournamentFrame(java.util.List<Tournament> tour) {
@@ -22,20 +23,35 @@ public class TournamentFrame extends JFrame {
 		lLabel = new JLabel("Enter Location: ");
 		location = new JTextField(20);
 		mLabel = new JLabel("Enter Maximum Number Teams: ");
-		maxTeams = new JTextField(10);
+		maxTeams = new JTextField(5);
+		fLabel = new JLabel("Enter the Tournament Format");
+
+        single = new JRadioButton("Single Elimination");
+		division = new JRadioButton("Divisions");
+        divLabel = new JLabel("");
+        
 		submit = new JButton("Submit");
 		errorLabel = new JLabel("");
+		
+        division.addActionListener(this);
+        
+        ButtonGroup group = new ButtonGroup();
+        group.add(single);
+        group.add(division);
+        
 		p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
 		p2 = new JPanel();
 		p2.setLayout(new FlowLayout());
+		p21 = new JPanel();
+		p21.setLayout(new FlowLayout());
 		p3 = new JPanel();
 		p3.setLayout(new FlowLayout());
 
 		setTitle("Create Tournament");
       	setSize(400,400);
-      	setLayout(new GridLayout(3, 1));
-		
+      	setLayout(new GridLayout(4, 1));
+      	
 		submit.addActionListener(new ActionListener() {
        		public void actionPerformed(ActionEvent e) {
        			if ((name.getText().trim().isEmpty()) || (deadline.getText().trim().isEmpty()) || (location.getText().trim().isEmpty()) || (maxTeams.getText().trim().isEmpty())) {
@@ -64,11 +80,23 @@ public class TournamentFrame extends JFrame {
 		p1.add(location);	
 		p2.add(mLabel);	
 		p2.add(maxTeams);
+		p2.add(fLabel);
+		p21.add(single);
+		p21.add(division);
+		p21.add(divLabel);
 		p3.add(submit);	
 		p3.add(errorLabel);
 
 		add(p1);
-		add(p2);	
+		add(p2);
+		add(p21);
 		add(p3);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		divLabel.setText("Enter the desired number of Divisions: ");
+		numDiv = new JTextField(5);
+		p21.add(numDiv);
 	}
 }
