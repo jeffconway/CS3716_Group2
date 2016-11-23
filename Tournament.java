@@ -7,8 +7,8 @@ import java.util.Date;
 
 public class Tournament{
 
-	List<Team> teams = new ArrayList();						//the teams in the tournament
-	List<Match> matches = new ArrayList();					//the matches in the tournament
+	List<Team> teams = new ArrayList<Team>();						//the teams in the tournament
+	List<Match> matches = new ArrayList<Match>();					//the matches in the tournament
 	Format format;											//the format of the tournament
 	String deadline, name, maxTeams, location;
 	int numDivs; //the deadline to sign up for the tournament and the name of the tournament
