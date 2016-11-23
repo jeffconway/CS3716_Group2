@@ -78,7 +78,6 @@ public class TournamentFrame extends JFrame {
        				p3.add(errorLabel);
        			}
        			else {
-	           		JOptionPane.showMessageDialog(null, "Tournament Created!");
 					String n = name.getText();
 					String d = deadline.getText();
 					Tournament t = new Tournament(d,n);

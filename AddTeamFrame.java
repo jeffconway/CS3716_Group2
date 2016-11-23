@@ -8,9 +8,12 @@ public class AddTeamFrame extends JFrame {
 	JButton b1,b2;
 	JPanel p1,p2,p3;
 	AddPlayerFrame f1;
-	static Team te = new Team("");
+	static Tournament to;
+	static Team te;
 
 	public AddTeamFrame(Tournament t) {
+		to = t;
+		te = new Team("");
 		setTitle("Add Team");
 		setSize(600,400);
 		setLayout(new GridLayout(3, 1));
@@ -34,6 +37,14 @@ public class AddTeamFrame extends JFrame {
 		 });
 		p2.add(b1);
 		b2 = new JButton("Submit Team");
+		b2.addActionListener(new ActionListener() {
+		   	public void actionPerformed(ActionEvent e) {
+				String name = t1.getText().trim();
+				te.setTeamName(name);
+				to.addTeam(te);
+				dispose();
+		   	 }          
+		 });
 		p3.add(b2);
 	
 		add(p1);

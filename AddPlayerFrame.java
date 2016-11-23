@@ -7,11 +7,12 @@ public class AddPlayerFrame extends JFrame {
 	JTextField t1,t2,t3,t4,t5;
 	JButton b1;
 	JPanel p1,p2,p3;
+	Player p;
 	static Team te;
 
 	public AddPlayerFrame(Team t) {
 		te = t;
-		setTitle("Add Team");
+		setTitle("Add Player");
 		setSize(600,400);
 		setLayout(new GridLayout(3, 1));
 		p1 = new JPanel();
@@ -44,7 +45,14 @@ public class AddPlayerFrame extends JFrame {
 		b1 = new JButton("Submit Player");
 		b1.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
-				
+				String name = t1.getText().trim();
+				int age = Integer.parseInt(t2.getText().trim());
+				float height = Float.valueOf(t3.getText().trim());
+				float weight = Float.valueOf(t4.getText().trim());
+				String gender = t5.getText().trim();
+				p = new Player(name,gender,age,height,weight);
+				te.addPlayer(p);
+				dispose();
 		   	 }          
 		 });
 		p3.add(b1);
