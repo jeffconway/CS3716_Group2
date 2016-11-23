@@ -52,9 +52,8 @@ public class Team{
 
 	public void delPlayer(Player playerDel){			//remove a player from the team		
 		for(int i = 0; i <= players.size(); i++){
-			Player temp = players(i);
-			String tempName = temp.name;
-			if((name.compareTo(playerDel.name)) == 0){
+			Player temp = players.get(i);
+			if((temp.name.compareTo(playerDel.name)) == 0){
 				players.remove(i);
 				return;
 			}
