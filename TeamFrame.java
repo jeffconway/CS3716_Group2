@@ -31,6 +31,8 @@ class TeamFrame extends JFrame {
 		b1 = new JButton("Add Team");
 		b1.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
+				f1 = new AddTeamFrame(to);
+ -				f1.setVisible(true);
 				//JOptionPane.showMessageDialog(this,"Add Team!");
 		   	 }          
 		 });
