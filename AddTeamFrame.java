@@ -12,6 +12,7 @@ public class AddTeamFrame extends JFrame {
 	JButton b1,b2;
 	JPanel p1,p2,p3;
 	AddPlayerFrame f1;
+	TeamFrame f2;
 	static Tournament to;
 	static Team te;
 
@@ -46,13 +47,17 @@ public class AddTeamFrame extends JFrame {
 				String name = t1.getText().trim();
 				te.setTeamName(name);
 				to.addTeam(te);
+				f2 = new TeamFrame(to);
+				f2.setVisible(true);
 				dispose();
 		   	 }          
 		 });
+
 		p3.add(b2);
 	
 		add(p1);
 		add(p2);
 		add(p3);
 	}
+
 }

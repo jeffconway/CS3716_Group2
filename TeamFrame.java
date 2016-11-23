@@ -10,7 +10,7 @@ class TeamFrame extends JFrame {
 	JLabel name,deadline;
 	JButton b1,b2;
 	JComboBox<?> cb;
-	JPanel p1,p2;
+	JPanel p1,p2,p3;
 	AddTeamFrame f1;
 	static Tournament to;
 	
@@ -18,11 +18,13 @@ class TeamFrame extends JFrame {
 		to = t;
 		setTitle("Edit Team");
 		setSize(400,400);
-   		setLayout(new GridLayout(2, 1));
+   		setLayout(new GridLayout(3, 1));
 		p1 = new JPanel();
       	p1.setLayout(new FlowLayout());
 		p2 = new JPanel();
       	p2.setLayout(new FlowLayout());
+		p3 = new JPanel();
+      	p3.setLayout(new BoxLayout(p3,BoxLayout.Y_AXIS));
 
 		name = new JLabel("Name: " + t.getName());
 		deadline = new JLabel("Deadline: " + t.getDeadline());
@@ -36,6 +38,7 @@ class TeamFrame extends JFrame {
 		   	public void actionPerformed(ActionEvent e) {
 				f1 = new AddTeamFrame(to);
 				f1.setVisible(true);
+				dispose();
 				//JOptionPane.showMessageDialog(this,"Add Team!");
 		   	 }          
 		 });
@@ -45,7 +48,10 @@ class TeamFrame extends JFrame {
 				//JOptionPane.showMessageDialog(this,"Edit Team!");
 		   	 }          
 		 });
-		
+		for (int i=0; i<t.getTeams().size();i++) {
+			JLabel temp = new JLabel((i+1)+". Name: "+t.getTeams().get(i).getTeamName());
+			p3.add(temp);
+		} 
 
 		p1.add(name);
 		p1.add(deadline);
@@ -54,5 +60,6 @@ class TeamFrame extends JFrame {
 		p2.add(b2);
 		add(p1);
 		add(p2);
+		add(p3);
 	}
 }
