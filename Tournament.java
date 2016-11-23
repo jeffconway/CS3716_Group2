@@ -70,8 +70,15 @@ public class Tournament{
 		teams.add(newTeam);
 	}
 
-	public void delTeam(Team newTeam){						//removes a team from the tournament
-		//deletes team newTeam
+	public void delTeam(Team delTeam){			//remove a player from the team		
+		for(int i = 0; i <= teams.size(); i++){
+			Team temp = teams(i);
+			String tempName = temp.name;
+			if((name.compareTo(playerDel.name)) == 0){
+				players.remove(i);
+				return;
+			}
+		}
 	}
 	
 	public Team getTeams(Team teams){

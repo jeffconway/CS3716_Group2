@@ -52,12 +52,14 @@ public class Team{
 
 	public void delPlayer(Player playerDel){			//remove a player from the team		
 		for(int i = 0; i <= players.size(); i++){
-			if(players.get(i) == playerDel){			//this might not work... not sure if you can compare it directly like this. could change it to check for player name.
+			Player temp = players(i);
+			String tempName = temp.name;
+			if((name.compareTo(playerDel.name)) == 0){
 				players.remove(i);
 				return;
 			}
 		}
-	}	
+	}
 
 	public void removeWin(){					//remove a win
 		wins--;
