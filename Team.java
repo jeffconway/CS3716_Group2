@@ -5,6 +5,7 @@ public class Team{
 
 	String name;								//name of team
 	List<Player> players = new ArrayList<Player>();		//list of player names
+	List<Player> coaches = new ArrayList<Player>();
 	int wins = 0, losses = 0;					//total wins and losses for the team, each object starts with 0
 
 	public Team(String name){					//constructor for team
@@ -19,12 +20,10 @@ public class Team{
 		return players;
 	}
 
-	/*
-	public List<Users> getCoaches(){			//get all coaches
-		//search the user list for all coaches
-		
-	}
-	*/
+	
+	public List<Player> getCoaches(){			//get all coaches
+		return(coaches);		
+	}	
 
 	public int getWins(){						//get the number of wins for the team
 		return wins;
@@ -42,6 +41,10 @@ public class Team{
 		players.add(newPlayer);
 	}
 
+	public void addCoach(Player newCoach){		//add a coach to the team
+		coaches.add(newCoach);
+	}
+	
 	public void addWin(){						//add a win
 		wins++;
 	}
@@ -50,11 +53,22 @@ public class Team{
 		losses--;
 	}
 
-	public void delPlayer(Player playerDel){			//remove a player from the team		
+	public void delPlayer(Player delPlayer){			//remove a player from the team		
 		for(int i = 0; i <= players.size(); i++){
 			Player temp = players.get(i);
-			if((temp.name.compareTo(playerDel.name)) == 0){
+			if((temp.name.compareTo(delPlayer.name)) == 0){
 				players.remove(i);
+				return;
+			}
+		}
+	}
+	
+	
+	public void delCoach(Player delCoach){				//remove a coach from the team		
+		for(int i = 0; i <= coaches.size(); i++){
+			Player temp = coaches.get(i);
+			if((temp.name.compareTo(delCoach.name)) == 0){
+				coaches.remove(i);
 				return;
 			}
 		}
