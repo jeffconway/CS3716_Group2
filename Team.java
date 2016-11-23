@@ -4,7 +4,7 @@ import java.util.List;
 public class Team{
 
 	String name;								//name of team
-	List<Player> players = new ArrayList();		//list of player names
+	List<Player> players = new ArrayList<Player>();		//list of player names
 	int wins = 0, losses = 0;					//total wins and losses for the team, each object starts with 0
 
 	public Team(String name){					//constructor for team

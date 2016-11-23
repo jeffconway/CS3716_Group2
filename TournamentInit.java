@@ -8,8 +8,7 @@ public class TournamentInit {
     
    	private JFrame f,f1,f2;
    	private JPanel controlPanel,controlPanel2,controlPanel3;
-	private java.util.List<Tournament> tournaments = new ArrayList();
-	private JTextField name, deadline;
+	private java.util.List<Tournament> tournaments = new ArrayList<Tournament>();
 	private JButton createTournament,checkTournaments;
 
   	public TournamentInit(){
@@ -57,6 +56,6 @@ public class TournamentInit {
 	}
 
 	public static void main(String[] args){
-      TournamentInit  init = new TournamentInit();
+      new TournamentInit();
    }
 }

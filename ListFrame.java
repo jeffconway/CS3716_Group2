@@ -3,6 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 class ListFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	TeamFrame f;
  	JPanel p1,fill,listPane;
  	JLabel l1,l2;

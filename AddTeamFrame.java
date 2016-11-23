@@ -3,6 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class AddTeamFrame extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JLabel l1;
 	JTextField t1;
 	JButton b1,b2;

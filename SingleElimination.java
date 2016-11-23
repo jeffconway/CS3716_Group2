@@ -25,7 +25,7 @@ public class SingleElimination implements Format{
 			
 		}
 		
-			List<Match> matches = new ArrayList();
+			List<Match> matches = new ArrayList<Match>();
 			int i = 0;
 			while (i <= teamList.size()) {
 				if ((teamList.size() % 2) != 1) {
