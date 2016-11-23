@@ -34,15 +34,15 @@ public class AddPlayerFrame extends JFrame {
 		t2 = new JTextField(10);
 		p1.add(l2);
 		p1.add(t2);
-		l3 = new JLabel("Height: ");
+		l3 = new JLabel("Height (cm): ");
 		t3 = new JTextField(10);
 		p2.add(l3);
 		p2.add(t3);
-		l4 = new JLabel("Weight: ");
+		l4 = new JLabel("Weight (lbs): ");
 		t4 = new JTextField(10);
 		p2.add(l4);
 		p2.add(t4);
-		l5 = new JLabel("Gender: ");
+		l5 = new JLabel("Gender (M/F/other): ");
 		t5 = new JTextField(2);
 		p2.add(l5);
 		p2.add(t5);
