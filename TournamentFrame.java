@@ -80,7 +80,15 @@ public class TournamentFrame extends JFrame {
        			else {
 					String n = name.getText();
 					String d = deadline.getText();
-					Tournament t = new Tournament(d,n);
+					String l = location.getText();
+					String m = maxTeams.getText();
+					
+					int f = 1;
+					if (division.isSelected()) {
+						f = Integer.parseInt(numDiv.getText()); 
+					} 
+					
+					Tournament t = new Tournament(d,n,l,m,f);
 					to.add(t);
 					//System.out.println("Name: " + tour.get(0).getName());
 					//System.out.println("Deadline: " + tournaments.get(0).getDeadline());
