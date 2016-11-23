@@ -18,7 +18,7 @@ public class TournamentFrame extends JFrame {
 		to = tour;
 		nLabel = new JLabel("Enter Name: ");
 		name = new JTextField(20);
-		dLabel = new JLabel("Enter Deadline: ");
+		dLabel = new JLabel("Enter Deadline (dd/mm/yyyy: ");
 		deadline = new JTextField(10);
 		lLabel = new JLabel("Enter Location: ");
 		location = new JTextField(20);
