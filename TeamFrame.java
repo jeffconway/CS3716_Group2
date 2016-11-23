@@ -11,8 +11,11 @@ class TeamFrame extends JFrame {
 	JButton b1,b2;
 	JComboBox<?> cb;
 	JPanel p1,p2;
+	AddTeamFrame f1;
+	static Tournament to;
 	
 	TeamFrame(Tournament t) {
+		to = t;
 		setTitle("Edit Team");
 		setSize(400,400);
    		setLayout(new GridLayout(2, 1));
@@ -32,7 +35,7 @@ class TeamFrame extends JFrame {
 		b1.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				f1 = new AddTeamFrame(to);
- -				f1.setVisible(true);
+				f1.setVisible(true);
 				//JOptionPane.showMessageDialog(this,"Add Team!");
 		   	 }          
 		 });
