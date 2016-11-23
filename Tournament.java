@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Tournament{
 
-	List<Team> teams = new ArrayList<Team>();						//the teams in the tournament
-	List<Match> matches = new ArrayList<Match>();					//the matches in the tournament
+	List<Team> teams = new ArrayList();						//the teams in the tournament
+	List<Match> matches = new ArrayList();					//the matches in the tournament
 	Format format;											//the format of the tournament
 	String deadline, name, maxTeams, location;
 	int numDivs; //the deadline to sign up for the tournament and the name of the tournament
@@ -84,11 +88,24 @@ public class Tournament{
 		return teams;
 	}
 
-	public boolean isDeadline(){							//return if the deadline has passed
-		//compare current date/time with deadline
-		//if(past deadline){
-		return true;
-		//}
+	public boolean isDeadline(){							//return true if the deadline has passed
+		Date startDate;
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		Date currentDate = new Date();		
+		try{
+			startDate = df.parse(deadline);
+			System.out.println(startDate);
+			if(startDate.after(currentDate)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		catch (ParseException e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	public void createMatches(){							//creates the matches of the tournament
