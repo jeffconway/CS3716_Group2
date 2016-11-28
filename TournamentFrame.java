@@ -32,6 +32,26 @@ public class TournamentFrame extends JFrame {
         
 		submit = new JButton("Submit");
 		errorLabel = new JLabel("");
+		
+        division.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				divLabel.setText("Enter the desired number of Divisions: ");
+				numDiv = new JTextField(5);
+				p21.add(numDiv);
+				p21.revalidate();
+				p21.repaint();
+			}
+		});
+		single.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!divLabel.getText().trim().isEmpty()) {
+					divLabel.setText("");
+					p21.remove(numDiv);
+					p21.revalidate();
+					p21.repaint();
+				}
+			}
+		});
         
         ButtonGroup group = new ButtonGroup();
         group.add(single);
@@ -52,19 +72,25 @@ public class TournamentFrame extends JFrame {
       	
 		submit.addActionListener(new ActionListener() {
        		public void actionPerformed(ActionEvent e) {
-       			if ((name.getText().trim().isEmpty()) || (deadline.getText().trim().isEmpty()) || 
-						(location.getText().trim().isEmpty()) || (maxTeams.getText().trim().isEmpty())) {
+       			if ((name.getText().trim().isEmpty()) || (deadline.getText().trim().isEmpty()) || (location.getText().trim().isEmpty()) || (maxTeams.getText().trim().isEmpty())) {
        				errorLabel.setForeground(Color.RED);
        				errorLabel.setText("Must fill out all fields to create Tournament!");
        				p3.add(errorLabel);
        			}
        			else {
+	           		JOptionPane.showMessageDialog(null, "Tournament Created!");
 					String n = name.getText();
 					String d = deadline.getText();
 					String l = location.getText();
 					String m = maxTeams.getText();
-					Tournament t = new Tournament(d,n,l,m);
+					int f = 1;
+					if (division.isSelected()) {
+						f = Integer.parseInt(numDiv.getText()); 
+					 } 
+					Tournament t = new Tournament(d,n,l,m,f);
 					to.add(t);
+					//System.out.println("Name: " + tour.get(0).getName());
+					//System.out.println("Deadline: " + tournaments.get(0).getDeadline());
 					dispose();
        			}
        	 	}          

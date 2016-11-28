@@ -11,12 +11,14 @@ public class Tournament{
 	List<Match> matches = new ArrayList<Match>();					//the matches in the tournament
 	Format format;											//the format of the tournament
 	String deadline, name, maxTeams, location;//the deadline to sign up for the tournament and the name of the tournament
-
-	public Tournament(String deadline, String name, String maxTeams, String location){		//constructor for tournament
+	int numDivs;
+	
+	public Tournament(String deadline, String name, String maxTeams, String location, int numDivs){		//constructor for tournament
 		this.deadline = deadline;
 		this.name = name;
 		this.maxTeams = maxTeams;
 		this.location = location;
+		this.numDivs = numDivs;
 	}
 
 	public List<Team> getTeams(){							//get the teams in the tournament
@@ -47,6 +49,14 @@ public class Tournament{
 		return location;
 	}
 	
+	public void setNumDivs(int numDivs) {
+		this.numDivs = numDivs;
+	}
+	
+	public int getNumDivs() {
+		return numDivs;
+	}
+	
 	public void setMaxTeams(String maxTeams) {
 		this.maxTeams = maxTeams;
 	}
@@ -73,7 +83,8 @@ public class Tournament{
 	public void delTeam(Team delTeam){			//remove a player from the team		
 		for(int i = 0; i <= teams.size(); i++){
 			Team temp = teams.get(i);
-			if((temp.name.compareTo(delTeam.name)) == 0){
+			String tempName = temp.name;
+			if((tempName.compareTo(delTeam.name)) == 0){
 				teams.remove(i);
 				return;
 			}
