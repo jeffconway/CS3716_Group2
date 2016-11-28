@@ -1,6 +1,7 @@
 import java.awt.*; 
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.*;
 
 class TeamFrame extends JFrame {
 	/**
@@ -8,7 +9,7 @@ class TeamFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel name,deadline;
-	JButton b1,b2,b3;
+	JButton b1,b2,b3,b4;
 	JComboBox<?> cb;
 	JPanel p1,p2,p3,p4;
 	AddTeamFrame f1;
@@ -59,12 +60,22 @@ class TeamFrame extends JFrame {
 				ListFrame lf = new ListFrame(f,tournaments);
 		   	}          
 		});
+		b4 = new JButton("Delete");
+		b4.addActionListener(new ActionListener() {
+		   	public void actionPerformed(ActionEvent e) {
+				tournaments.remove(to);
+				updateFile();
+				removePanels();
+				ListFrame lf = new ListFrame(f,tournaments);
+		   	}          
+		});
 		for (int i=0; i<t.getTeams().size();i++) {
 			JLabel temp = new JLabel((i+1)+". Name: "+t.getTeams().get(i).getTeamName());
 			p3.add(temp);
 		} 
-
+		
 		p4.add(b3);
+		p4.add(b4);		
 		p1.add(name);
 		p1.add(deadline);
 		p2.add(b1);	
@@ -82,5 +93,20 @@ class TeamFrame extends JFrame {
 		f.remove(p2);
 		f.remove(p3);
 		f.remove(p4);
+	}
+	private void updateFile() {
+		try {
+				FileOutputStream fileOut = new FileOutputStream("data.txt");
+				ObjectOutputStream out = new ObjectOutputStream(fileOut);
+				out.writeObject(tournaments);
+				out.close();
+				fileOut.close();
+			}
+			catch(FileNotFoundException ex) {
+				ex.printStackTrace();		
+			}
+			catch(IOException ex) {
+				ex.printStackTrace();		
+			}
 	}
 }
