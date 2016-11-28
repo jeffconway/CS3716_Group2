@@ -10,9 +10,9 @@ public class TournamentFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JTextField name,deadline, location, maxTeams, numDiv;
 	JLabel nLabel,dLabel, lLabel, mLabel, errorLabel, fLabel, divLabel;
-	JButton submit;
+	JButton submit,ba;
 	JRadioButton single, division;
-	JPanel p1,p2,p21,p3;
+	JPanel p1,p2,p21,p3,p4;
 	static java.util.List<Tournament> to;
 	private JFrame f;
 
@@ -68,10 +68,12 @@ public class TournamentFrame extends JFrame {
 		p21.setLayout(new FlowLayout());
 		p3 = new JPanel();
 		p3.setLayout(new FlowLayout());
+		p4 = new JPanel();
+		p4.setLayout(new FlowLayout());
 
 		fr.setTitle("Create Tournament");
       	fr.setSize(400,500);
-      	fr.setLayout(new GridLayout(4, 1));
+      	fr.setLayout(new GridLayout(5, 1));
       	
 		submit.addActionListener(new ActionListener() {
        		public void actionPerformed(ActionEvent e) {
@@ -97,7 +99,15 @@ public class TournamentFrame extends JFrame {
        			}
        	 	}          
       	});
+		ba = new JButton("Back");
+		ba.addActionListener(new ActionListener() {
+		   	public void actionPerformed(ActionEvent e) {
+				removePanels();
+				TournamentInit lf = new TournamentInit(f,to);
+		   	}          
+		});
 
+		p4.add(ba);
 		p1.add(nLabel);		
 		p1.add(name);	
 		p2.add(dLabel);	
@@ -113,6 +123,7 @@ public class TournamentFrame extends JFrame {
 		p3.add(submit);	
 		p3.add(errorLabel);
 
+		f.add(p4);
 		f.add(p1);
 		f.add(p2);
 		f.add(p21);
@@ -126,6 +137,7 @@ public class TournamentFrame extends JFrame {
 		f.remove(p2);
 		f.remove(p21);
 		f.remove(p3);
+		f.remove(p4);
 	}
 	private void updateFile() {
 		try {
