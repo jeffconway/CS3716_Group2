@@ -8,7 +8,7 @@ class ListFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	TeamFrame f;
- 	JPanel p1,listPane;
+ 	JPanel p1,listPane,p2;
 	JButton ba;
  	JLabel l1,l2;
 	static int i;
@@ -22,6 +22,8 @@ class ListFrame extends JFrame {
        	fra.setSize(400,800);
 		listPane=new JPanel();
       	listPane.setLayout(new BoxLayout(listPane,BoxLayout.Y_AXIS));
+		p2 = new JPanel();
+		p2.setLayout(new FlowLayout());
 		ba = new JButton("Back");
 		ba.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
@@ -29,7 +31,7 @@ class ListFrame extends JFrame {
 				TournamentInit lf = new TournamentInit(fra,to);
 		   	}          
 		});
-		listPane.add(ba);
+		p2.add(ba);
 		for (i=0; i<tournaments.size();i++) {
 			p1 = new JPanel();
             p1.setPreferredSize(new Dimension(400,65));
@@ -51,11 +53,13 @@ class ListFrame extends JFrame {
 		}
 		Component glue = Box.createVerticalGlue();
 		listPane.add(glue);
+		fra.add(p2);
 		fra.add(listPane);
 		fra.revalidate();
 		fra.repaint();
 	}
 	private void removePanels() {
 		fra.remove(listPane);
+		fra.remove(p2);
 	}
 }
