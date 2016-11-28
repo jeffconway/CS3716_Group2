@@ -8,23 +8,29 @@ class TeamFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	JLabel name,deadline;
-	JButton b1,b2;
+	JButton b1,b2,b3;
 	JComboBox<?> cb;
-	JPanel p1,p2,p3;
+	JPanel p1,p2,p3,p4;
 	AddTeamFrame f1;
 	static Tournament to;
+	static java.util.List<Tournament> tournaments;
+	private JFrame f;
 	
-	TeamFrame(Tournament t) {
+	TeamFrame(Tournament t,JFrame fr,java.util.List<Tournament> tour) {
+		f = fr;
+		tournaments = tour;
 		to = t;
-		setTitle("Edit Team");
-		setSize(400,400);
-   		setLayout(new GridLayout(3, 1));
+		f.setTitle("Manage Teams");
+		f.setSize(400,600);
+   		f.setLayout(new GridLayout(4, 1));
 		p1 = new JPanel();
       	p1.setLayout(new FlowLayout());
 		p2 = new JPanel();
       	p2.setLayout(new FlowLayout());
 		p3 = new JPanel();
       	p3.setLayout(new BoxLayout(p3,BoxLayout.Y_AXIS));
+		p4 = new JPanel();
+		p4.setLayout(new FlowLayout());
 
 		name = new JLabel("Name: " + t.getName());
 		deadline = new JLabel("Deadline: " + t.getDeadline());
@@ -36,30 +42,45 @@ class TeamFrame extends JFrame {
 		b1 = new JButton("Add Team");
 		b1.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
-				f1 = new AddTeamFrame(to);
-				f1.setVisible(true);
-				dispose();
-				//JOptionPane.showMessageDialog(this,"Add Team!");
-		   	 }          
-		 });
+				removePanels();
+				f1 = new AddTeamFrame(to,f,tournaments);
+		   	}          
+		});
 		b2 = new JButton("Edit Team");
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
-				//JOptionPane.showMessageDialog(this,"Edit Team!");
-		   	 }          
-		 });
+				//edit team here
+		   	}          
+		});
+		b3 = new JButton("Back");
+		b3.addActionListener(new ActionListener() {
+		   	public void actionPerformed(ActionEvent e) {
+				removePanels();
+				ListFrame lf = new ListFrame(f,tournaments);
+		   	}          
+		});
 		for (int i=0; i<t.getTeams().size();i++) {
 			JLabel temp = new JLabel((i+1)+". Name: "+t.getTeams().get(i).getTeamName());
 			p3.add(temp);
 		} 
 
+		p4.add(b3);
 		p1.add(name);
 		p1.add(deadline);
 		p2.add(b1);	
 		p2.add(cb);
 		p2.add(b2);
-		add(p1);
-		add(p2);
-		add(p3);
+		f.add(p4);
+		f.add(p1);
+		f.add(p2);
+		f.add(p3);
+		f.revalidate();
+		f.repaint();
+	}
+	private void removePanels() {
+		f.remove(p1);
+		f.remove(p2);
+		f.remove(p3);
+		f.remove(p4);
 	}
 }

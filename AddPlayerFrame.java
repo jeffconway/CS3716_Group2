@@ -9,22 +9,30 @@ public class AddPlayerFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JLabel l1,l2,l3,l4,l5;
 	JTextField t1,t2,t3,t4,t5;
-	JButton b1;
-	JPanel p1,p2,p3;
+	JButton b1,b2;
+	JPanel p1,p2,p3,p4;
 	Player p;
 	static Team te;
+	static Tournament to;
+	static java.util.List<Tournament> tournaments;
+	private JFrame f;
 
-	public AddPlayerFrame(Team t) {
+	public AddPlayerFrame(Tournament tour,Team t,JFrame fr,java.util.List<Tournament> tou) {
+		f = fr;
+		to = tour;
+		tournaments = tou;
 		te = t;
-		setTitle("Add Player");
-		setSize(600,400);
-		setLayout(new GridLayout(3, 1));
+		f.setTitle("Add Player");
+		f.setSize(600,400);
+		f.setLayout(new GridLayout(4, 1));
 		p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
 		p2 = new JPanel();
 		p2.setLayout(new FlowLayout());
 		p3 = new JPanel();
 		p3.setLayout(new FlowLayout());
+		p4 = new JPanel();
+		p4.setLayout(new FlowLayout());
 
 		l1 = new JLabel("Name: ");
 		t1 = new JTextField(20);
@@ -56,13 +64,31 @@ public class AddPlayerFrame extends JFrame {
 				String gender = t5.getText().trim();
 				p = new Player(name,gender,age,height,weight);
 				te.addPlayer(p);
-				dispose();
+				removePanels();
+				AddTeamFrame atf = new AddTeamFrame(to,f,tournaments);
 		   	 }          
 		 });
+		b2 = new JButton("Back");
+		b2.addActionListener(new ActionListener() {
+		   	public void actionPerformed(ActionEvent e) {
+				removePanels();
+				AddTeamFrame atf = new AddTeamFrame(to,f,tournaments);
+		   	}          
+		});
 		p3.add(b1);
+		p4.add(b2);
 	
-		add(p1);
-		add(p2);
-		add(p3);
+		f.add(p4);
+		f.add(p1);
+		f.add(p2);
+		f.add(p3);
+		f.revalidate();
+		f.repaint();
+	}
+	private void removePanels() {
+		f.remove(p1);
+		f.remove(p2);
+		f.remove(p3);
+		f.remove(p4);
 	}
 }

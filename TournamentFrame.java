@@ -13,7 +13,6 @@ public class TournamentFrame extends JFrame {
 	JRadioButton single, division;
 	JPanel p1,p2,p21,p3;
 	static java.util.List<Tournament> to;
-	static JFrame jf;
 	private JFrame f;
 
 	TournamentFrame(JFrame fr,java.util.List<Tournament> tour) {
@@ -35,8 +34,8 @@ public class TournamentFrame extends JFrame {
         
 		submit = new JButton("Submit");
 		errorLabel = new JLabel("");
-		
-        division.addActionListener(new ActionListener() {
+
+		division.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				divLabel.setText("Enter the desired number of Divisions: ");
 				numDiv = new JTextField(5);
@@ -80,16 +79,16 @@ public class TournamentFrame extends JFrame {
        				errorLabel.setText("Must fill out all fields to create Tournament!");
        				p3.add(errorLabel);
        			}
-       			else { 
+       			else {
 					String n = name.getText();
 					String d = deadline.getText();
 					String l = location.getText();
-					String m = maxTeams.getText();
+					String m = maxTeams.getText();		
 					int nd = 1;
 					if (division.isSelected()) {
 						nd = Integer.parseInt(numDiv.getText()); 
-					 } 
-					Tournament t = new Tournament(d,n,l,m,nd);
+					 }			
+					Tournament t = new Tournament(d,n,l,m);
 					to.add(t);
 					removePanels();
 					TournamentInit tourn = new TournamentInit(f,to);
@@ -119,7 +118,7 @@ public class TournamentFrame extends JFrame {
 		f.revalidate();
 		f.repaint();
 	}
-	
+
 	private void removePanels() {
 		f.remove(p1);
 		f.remove(p2);
