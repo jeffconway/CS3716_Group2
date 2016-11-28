@@ -13,9 +13,12 @@ public class TournamentFrame extends JFrame {
 	JRadioButton single, division;
 	JPanel p1,p2,p21,p3;
 	static java.util.List<Tournament> to;
+	static JFrame jf;
+	private JFrame f;
 
-	TournamentFrame(java.util.List<Tournament> tour) {
+	TournamentFrame(JFrame fr,java.util.List<Tournament> tour) {
 		to = tour;
+		f = fr;
 		nLabel = new JLabel("Enter Name: ");
 		name = new JTextField(20);
 		dLabel = new JLabel("Enter Deadline (dd/mm/yyyy): ");
@@ -32,26 +35,6 @@ public class TournamentFrame extends JFrame {
         
 		submit = new JButton("Submit");
 		errorLabel = new JLabel("");
-		
-        division.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				divLabel.setText("Enter the desired number of Divisions: ");
-				numDiv = new JTextField(5);
-				p21.add(numDiv);
-				p21.revalidate();
-				p21.repaint();
-			}
-		});
-		single.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(!divLabel.getText().trim().isEmpty()) {
-					divLabel.setText("");
-					p21.remove(numDiv);
-					p21.revalidate();
-					p21.repaint();
-				}
-			}
-		});
         
         ButtonGroup group = new ButtonGroup();
         group.add(single);
@@ -66,32 +49,27 @@ public class TournamentFrame extends JFrame {
 		p3 = new JPanel();
 		p3.setLayout(new FlowLayout());
 
-		setTitle("Create Tournament");
-      	setSize(400,400);
-      	setLayout(new GridLayout(4, 1));
+		fr.setTitle("Create Tournament");
+      	fr.setSize(400,500);
+      	fr.setLayout(new GridLayout(4, 1));
       	
 		submit.addActionListener(new ActionListener() {
        		public void actionPerformed(ActionEvent e) {
-       			if ((name.getText().trim().isEmpty()) || (deadline.getText().trim().isEmpty()) || (location.getText().trim().isEmpty()) || (maxTeams.getText().trim().isEmpty())) {
+       			if ((name.getText().trim().isEmpty()) || (deadline.getText().trim().isEmpty()) || 
+						(location.getText().trim().isEmpty()) || (maxTeams.getText().trim().isEmpty())) {
        				errorLabel.setForeground(Color.RED);
        				errorLabel.setText("Must fill out all fields to create Tournament!");
        				p3.add(errorLabel);
        			}
        			else {
-	           		JOptionPane.showMessageDialog(null, "Tournament Created!");
 					String n = name.getText();
 					String d = deadline.getText();
 					String l = location.getText();
-					String m = maxTeams.getText();
-					int f = 1;
-					if (division.isSelected()) {
-						f = Integer.parseInt(numDiv.getText()); 
-					 } 
-					Tournament t = new Tournament(d,n,l,m,f);
+					String m = maxTeams.getText();					
+					Tournament t = new Tournament(d,n,l,m);
 					to.add(t);
-					//System.out.println("Name: " + tour.get(0).getName());
-					//System.out.println("Deadline: " + tournaments.get(0).getDeadline());
-					dispose();
+					removePanels();
+					TournamentInit tourn = new TournamentInit(f,to);
        			}
        	 	}          
       	});
@@ -111,9 +89,17 @@ public class TournamentFrame extends JFrame {
 		p3.add(submit);	
 		p3.add(errorLabel);
 
-		add(p1);
-		add(p2);
-		add(p21);
-		add(p3);
+		f.add(p1);
+		f.add(p2);
+		f.add(p21);
+		f.add(p3);
+		f.revalidate();
+		f.repaint();
+	}
+	private void removePanels() {
+		f.remove(p1);
+		f.remove(p2);
+		f.remove(p21);
+		f.remove(p3);
 	}
 }

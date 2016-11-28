@@ -12,17 +12,19 @@ class ListFrame extends JFrame {
  	JLabel l1,l2;
 	static int i;
 	static java.util.List<Tournament> to;
+	private JFrame fra;
 
- 	ListFrame(java.util.List<Tournament> tournaments) {
+ 	ListFrame(JFrame fr,java.util.List<Tournament> tournaments) {
+		fra = fr;
 		to = tournaments;
-		setTitle("List Teams");
-       	setSize(400,800);
-	listPane=new JPanel();
+		fra.setTitle("List Teams");
+       	fra.setSize(400,800);
+		listPane=new JPanel();
       	listPane.setLayout(new BoxLayout(listPane,BoxLayout.Y_AXIS));
 		for (i=0; i<tournaments.size();i++) {
 			p1 = new JPanel();
-                        p1.setPreferredSize(new Dimension(400,65));
-                        p1.setMaximumSize(p1.getPreferredSize());
+            p1.setPreferredSize(new Dimension(400,65));
+            p1.setMaximumSize(p1.getPreferredSize());
 			l1 = new JLabel((i+1)+". "+"Name: \t"+tournaments.get(i).getName());
 			p1.add(l1);
 			l2 = new JLabel("Deadline: \t"+tournaments.get(i).getDeadline());
@@ -32,8 +34,8 @@ class ListFrame extends JFrame {
 			b.addActionListener(new ActionListener() {
 				final int j=i+1;
 		   		public void actionPerformed(ActionEvent e) {
-					f = new TeamFrame(to.get(j-1));
-					f.setVisible(true);
+					
+					//f = new TeamFrame(to.get(j-1),fra);
 		   	 	}          
 		  	});
 			listPane.add(p1);
@@ -41,6 +43,8 @@ class ListFrame extends JFrame {
 
 	Component glue = Box.createVerticalGlue();
 	listPane.add(glue);
-	add(listPane);
+	fra.add(listPane);
+	fra.revalidate();
+	fra.repaint();
 	}
 }

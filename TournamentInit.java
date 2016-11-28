@@ -8,12 +8,16 @@ public class TournamentInit {
     
    	private JFrame f,f1,f2;
    	private JPanel controlPanel,controlPanel2,controlPanel3;
-	private java.util.List<Tournament> tournaments = new ArrayList<Tournament>();
+	private java.util.List<Tournament> tournaments;
 	private JButton createTournament,checkTournaments;
 
-  	public TournamentInit(){
-      	f = new JFrame("Tournament Organizer");
-      	f.setSize(400,400);
+	private void removePanels() {
+		f.remove(controlPanel);
+		f.remove(controlPanel2);
+		f.remove(controlPanel3);
+	}
+	private void createFrame() {
+		f.setSize(400,400);
    		f.setLayout(new GridLayout(4, 1));
    		f.addWindowListener(new WindowAdapter() {
         	public void windowClosing(WindowEvent windowEvent){
@@ -31,28 +35,35 @@ public class TournamentInit {
 		createTournament.setHorizontalTextPosition(SwingConstants.LEFT);   	
 		createTournament.addActionListener(new ActionListener() {
 		  	public void actionPerformed(ActionEvent e) {
-		   		tournamentGUI();
+		   		f1 = new TournamentFrame(f,tournaments);
+				removePanels();
 		 	}
 		});
 		checkTournaments.addActionListener(new ActionListener() {
      		public void actionPerformed(ActionEvent e) {
-        		listGUI();
+        		f2 = new ListFrame(f,tournaments);
+				removePanels();
       		}
    		});
       	controlPanel2.add(createTournament); 
 	  	controlPanel3.add(checkTournaments);  
 		f.add(controlPanel);
 		f.add(controlPanel2);
-		f.add(controlPanel3);     
-      	f.setVisible(true); 
- 	} 
-	private void tournamentGUI() {
-		f1 = new TournamentFrame(tournaments);
-		f1.setVisible(true);
+		f.add(controlPanel3);
 	}
-	private void listGUI() { 
-		f2 = new ListFrame(tournaments);
-		f2.setVisible(true);
+
+  	public TournamentInit(){
+		tournaments = new ArrayList<Tournament>();
+      	f = new JFrame("Tournament Organizer");
+      	createFrame();
+      	f.setVisible(true);
+ 	} 
+	public TournamentInit(JFrame fr,java.util.List<Tournament> to) {
+		tournaments = to;
+		f = fr;
+		createFrame();
+		f.revalidate();
+		f.repaint();
 	}
 
 	public static void main(String[] args){
