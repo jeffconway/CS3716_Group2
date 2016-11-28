@@ -1,4 +1,6 @@
-public class Player {
+import java.io.*;
+
+public class Player implements Serializable{
 
 	String name, gender;								//player name and gender
 	int age;											//player age

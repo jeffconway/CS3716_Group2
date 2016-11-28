@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.io.*;
 
-public class SingleElimination implements Format{
+public class SingleElimination implements Format,Serializable{
 
 	@SuppressWarnings("null")
 	@Override

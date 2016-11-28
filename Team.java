@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
-public class Team{
+public class Team implements Serializable{
 
 	String name;								//name of team
 	List<Player> players = new ArrayList<Player>();		//list of player names

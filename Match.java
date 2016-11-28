@@ -1,4 +1,6 @@
-public class Match{
+import java.io.*;
+
+public class Match implements Serializable{
 
 	Team team1, team2;							//teams in match
 	float team1Score, team2Score;				//the score of the teams

@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import java.util.*;
-
+import java.io.*;
  
 public class TournamentInit {
     
@@ -57,6 +57,22 @@ public class TournamentInit {
       	f = new JFrame("Tournament Organizer");
       	createFrame();
       	f.setVisible(true);
+		try {
+			FileInputStream fileIn = new FileInputStream("data.txt");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			tournaments = ((java.util.List<Tournament>) in.readObject());
+			in.close();
+			fileIn.close();
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();		
+		}
+		catch(IOException e) {
+			e.printStackTrace();		
+		}
+		catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
  	} 
 	public TournamentInit(JFrame fr,java.util.List<Tournament> to) {
 		tournaments = to;

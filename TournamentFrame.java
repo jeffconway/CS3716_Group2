@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.*;
 
 public class TournamentFrame extends JFrame {
 	/**
@@ -88,8 +89,9 @@ public class TournamentFrame extends JFrame {
 					if (division.isSelected()) {
 						nd = Integer.parseInt(numDiv.getText()); 
 					 }			
-					Tournament t = new Tournament(d,n,l,m);
+					Tournament t = new Tournament(d,n,l,m,nd);
 					to.add(t);
+					updateFile();
 					removePanels();
 					TournamentInit tourn = new TournamentInit(f,to);
        			}
@@ -124,5 +126,20 @@ public class TournamentFrame extends JFrame {
 		f.remove(p2);
 		f.remove(p21);
 		f.remove(p3);
+	}
+	private void updateFile() {
+		try {
+				FileOutputStream fileOut = new FileOutputStream("data.txt");
+				ObjectOutputStream out = new ObjectOutputStream(fileOut);
+				out.writeObject(to);
+				out.close();
+				fileOut.close();
+			}
+			catch(FileNotFoundException ex) {
+				ex.printStackTrace();		
+			}
+			catch(IOException ex) {
+				ex.printStackTrace();		
+			}
 	}
 }

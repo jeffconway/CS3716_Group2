@@ -1,6 +1,7 @@
 import java.awt.*; 
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.*;
 
 public class AddTeamFrame extends JFrame {
 	/**
@@ -53,6 +54,7 @@ public class AddTeamFrame extends JFrame {
 				String name = t1.getText().trim();
 				te.setTeamName(name);
 				to.addTeam(te);
+				updateFile();
 				removePanels();
 				f2 = new TeamFrame(to,f,tournaments);
 		   	 }          
@@ -79,5 +81,20 @@ public class AddTeamFrame extends JFrame {
 		f.remove(p2);
 		f.remove(p3);
 		f.remove(p4);
+	}
+	private void updateFile() {
+		try {
+				FileOutputStream fileOut = new FileOutputStream("data.txt");
+				ObjectOutputStream out = new ObjectOutputStream(fileOut);
+				out.writeObject(tournaments);
+				out.close();
+				fileOut.close();
+			}
+			catch(FileNotFoundException ex) {
+				ex.printStackTrace();		
+			}
+			catch(IOException ex) {
+				ex.printStackTrace();		
+			}
 	}
 }
