@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 public abstract class Divisions implements Format, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Tournament t1;
 	Team t;
 	Match m1;
@@ -32,14 +36,14 @@ public abstract class Divisions implements Format, Serializable {
 			}
 		}
 
-		List<Match> matches = new ArrayList();
+		List<Match> matches = new ArrayList<Match>();
 		int group_per_players = teamList.size() / t1.getNumDivs(); // number of
 																	// players
 																	// in each
 																	// division
 		int g = group_per_players; // random
 
-		for (int j = 0; j < group_per_players; g++) {
+		for (int j = 0; j < g; g++) {
 			for (int i = 0; i < group_per_players; i = i + 2) {
 				if (teamList.size() % 2 == 0) { // check if teams are even
 												// numbers
