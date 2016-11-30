@@ -14,16 +14,29 @@ public class AddPlayerFrame extends JFrame {
 	JButton b1,b2;
 	JPanel p1,p2,p3,p4;
 	Player p;
+	private int ind,pi;
 	static Team te;
 	static Tournament to;
 	static java.util.List<Tournament> tournaments;
 	private JFrame f;
 
-	public AddPlayerFrame(Tournament tour,Team t,JFrame fr,java.util.List<Tournament> tou) {
+	public AddPlayerFrame(int p,int index,Tournament tour,JFrame fr,java.util.List<Tournament> tou) {
 		f = fr;
 		to = tour;
 		tournaments = tou;
-		te = t;
+		ind = index;
+		generateFrame(p);
+	}
+	public AddPlayerFrame(int index,Tournament tour,JFrame fr,java.util.List<Tournament> tou) {
+		f = fr;
+		to = tour;
+		tournaments = tou;
+		ind = index;
+		generateFrame(-1);
+	}
+	public void generateFrame(int m) {
+		pi = m;
+		te = to.getTeams().get(ind);
 		f.setTitle("Add Player");
 		f.setSize(600,400);
 		f.setLayout(new GridLayout(4, 1));
@@ -37,23 +50,33 @@ public class AddPlayerFrame extends JFrame {
 		p4.setLayout(new FlowLayout());
 
 		l1 = new JLabel("Name: ");
-		t1 = new JTextField(20);
+		if (m != -1) {
+			Player p = te.getPlayers().get(m);
+			t1 = new JTextField(p.getName(),20);
+			t2 = new JTextField(String.valueOf(p.getAge()),10);
+			t3 = new JTextField(String.valueOf(p.getHeight()),10);
+			t4 = new JTextField(String.valueOf(p.getWeight()),10);
+			t5 = new JTextField(p.getGender(),2);
+		}
+		else {
+			t1 = new JTextField(20);
+			t2 = new JTextField(10);
+			t3 = new JTextField(10);
+			t4 = new JTextField(10);
+			t5 = new JTextField(2);
+		}
 		p1.add(l1);
 		p1.add(t1);
 		l2 = new JLabel("Age: ");
-		t2 = new JTextField(10);
 		p1.add(l2);
 		p1.add(t2);
 		l3 = new JLabel("Height (cm): ");
-		t3 = new JTextField(10);
 		p2.add(l3);
 		p2.add(t3);
 		l4 = new JLabel("Weight (lbs): ");
-		t4 = new JTextField(10);
 		p2.add(l4);
 		p2.add(t4);
 		l5 = new JLabel("Gender (M/F/other): ");
-		t5 = new JTextField(2);
 		p2.add(l5);
 		p2.add(t5);
 		b1 = new JButton("Submit Player");
@@ -65,17 +88,29 @@ public class AddPlayerFrame extends JFrame {
 				float weight = Float.valueOf(t4.getText().trim());
 				String gender = t5.getText().trim();
 				p = new Player(name,gender,age,height,weight);
-				te.addPlayer(p);
+				int k = tournaments.get(tournaments.indexOf(to)).getTeams().indexOf(te);
+				Team tempT = tournaments.get(tournaments.indexOf(to)).getTeams().get(k);
+				if (pi != -1) {
+					Player tempP = tempT.getPlayers().get(pi);
+					tempP.setName(name);
+					tempP.setAge(age);
+					tempP.setHeight(height);
+					tempP.setWeight(weight);
+					tempP.setGender(gender);
+				}
+				else {
+					tempT.addPlayer(p);
+				}
 				updateFile();
 				removePanels();
-				AddTeamFrame atf = new AddTeamFrame(to,f,tournaments);
+				EditTeamFrame etf = new EditTeamFrame(ind,to,f,tournaments);
 		   	 }          
 		 });
 		b2 = new JButton("Back");
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				removePanels();
-				AddTeamFrame atf = new AddTeamFrame(to,f,tournaments);
+				EditTeamFrame etf = new EditTeamFrame(ind,to,f,tournaments);
 		   	}          
 		});
 		p3.add(b1);
@@ -96,9 +131,9 @@ public class AddPlayerFrame extends JFrame {
 	}
 	private void updateFile() {
 		try {
-				FileOutputStream fileOut = new FileOutputStream("data.txt");
+				FileOutputStream fileOut = new FileOutputStream("data.ser");
 				ObjectOutputStream out = new ObjectOutputStream(fileOut);
-				out.writeObject(to);
+				out.writeObject(tournaments);
 				out.close();
 				fileOut.close();
 			}

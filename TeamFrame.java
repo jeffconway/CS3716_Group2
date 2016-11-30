@@ -3,8 +3,10 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 
-class TeamFrame extends JFrame {															/* class for creating and displaying all teams */
-
+class TeamFrame extends JFrame {
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	JLabel name,deadline;
 	JButton b1,b2,b3,b4;
@@ -14,7 +16,7 @@ class TeamFrame extends JFrame {															/* class for creating and display
 	static java.util.List<Tournament> tournaments;
 	private JFrame f,f1,f2;
 	
-	TeamFrame(Tournament t,JFrame fr,java.util.List<Tournament> tour) {						/* Creates frame for editing teams */
+	TeamFrame(Tournament t,JFrame fr,java.util.List<Tournament> tour) {
 		f = fr;
 		tournaments = tour;
 		to = t;
@@ -33,18 +35,18 @@ class TeamFrame extends JFrame {															/* class for creating and display
 		name = new JLabel("Name: " + t.getName());
 		deadline = new JLabel("Deadline: " + t.getDeadline());
 		String[] names = new String[t.getTeams().size()];
-		for (int i=0; i<t.getTeams().size(); i++) {											/*creates the array of team names*/
+		for (int i=0; i<t.getTeams().size(); i++) {
 			names[i] = t.getTeams().get(i).getTeamName();
 		}
-		cb = new JComboBox<String>(names);													/*uses the array to populate the combobox*/
-		b1 = new JButton("Add Team");														/*add team button*/
+		cb = new JComboBox<String>(names);
+		b1 = new JButton("Add Team");
 		b1.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				removePanels();
 				f1 = new AddTeamFrame(to,f,tournaments);
 		   	}          
 		});
-		b2 = new JButton("Edit Team");														/*edited team button*/
+		b2 = new JButton("Edit Team");
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				int index = cb.getSelectedIndex();
@@ -52,24 +54,24 @@ class TeamFrame extends JFrame {															/* class for creating and display
 				f2 = new EditTeamFrame(index,to,f,tournaments);
 		   	}          
 		});
-		b3 = new JButton("Back");															/*back button*/
+		b3 = new JButton("Back");
 		b3.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				removePanels();
 				ListFrame lf = new ListFrame(f,tournaments);
 		   	}          
 		});
-		b4 = new JButton("Delete");															/*delete team button*/
+		b4 = new JButton("Delete");
 		b4.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				tournaments.remove(to);
-				updateFile();																/*calls the updateFile() to update the database*/
+				updateFile();
 				removePanels();
 				ListFrame lf = new ListFrame(f,tournaments);
 		   	}          
 		});
-		for (int i=0; i<t.getTeams().size();i++) {											/*displays the team names*/
-			JLabel temp = new JLabel((i+1)+". "+t.getTeams().get(i).getTeamName());
+		for (int i=0; i<t.getTeams().size();i++) {
+			JLabel temp = new JLabel((i+1)+". Name: "+t.getTeams().get(i).getTeamName());
 			p3.add(temp);
 		} 
 		
@@ -87,17 +89,17 @@ class TeamFrame extends JFrame {															/* class for creating and display
 		f.revalidate();
 		f.repaint();
 	}
-	private void removePanels() {														/*removes panels from the frame so new panels can be added*/
+	private void removePanels() {
 		f.remove(p1);
 		f.remove(p2);
 		f.remove(p3);
 		f.remove(p4);
 	}
-	private void updateFile() {															/*function to update the file which stores all tournament information*/
+	private void updateFile() {
 		try {
-				FileOutputStream fileOut = new FileOutputStream("data.txt");
+				FileOutputStream fileOut = new FileOutputStream("data.ser");
 				ObjectOutputStream out = new ObjectOutputStream(fileOut);
-				out.writeObject(tournaments);											/*stores the tournaments as objects using the serializable feature of java*/
+				out.writeObject(tournaments);
 				out.close();
 				fileOut.close();
 			}

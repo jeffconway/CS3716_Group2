@@ -141,7 +141,7 @@ public class TournamentFrame extends JFrame {
 	}
 	private void updateFile() {
 		try {
-				FileOutputStream fileOut = new FileOutputStream("data.txt");
+				FileOutputStream fileOut = new FileOutputStream("data.ser");
 				ObjectOutputStream out = new ObjectOutputStream(fileOut);
 				out.writeObject(to);
 				out.close();

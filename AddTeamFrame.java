@@ -11,7 +11,7 @@ public class AddTeamFrame extends JFrame {
 	JLabel l1;
 	JTextField t1;
 	JButton b1,b2,b3;
-	JPanel p1,p2,p3,p4;
+	JPanel p1,p3,p4;
 	AddPlayerFrame f1;
 	TeamFrame f2;
 	static Tournament to;
@@ -29,8 +29,6 @@ public class AddTeamFrame extends JFrame {
 		f.setLayout(new GridLayout(4, 1));
 		p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
-		p2 = new JPanel();
-		p2.setLayout(new FlowLayout());
 		p3 = new JPanel();
 		p3.setLayout(new FlowLayout());
 		p4 = new JPanel();
@@ -40,14 +38,6 @@ public class AddTeamFrame extends JFrame {
 		t1 = new JTextField(20);
 		p1.add(l1);
 		p1.add(t1);
-		b1 = new JButton("Add Player");
-		b1.addActionListener(new ActionListener() {
-		   	public void actionPerformed(ActionEvent e) {
-				removePanels();
-				f1 = new AddPlayerFrame(to,te,f,tournaments);
-		   	 }          
-		 });
-		p2.add(b1);
 		b2 = new JButton("Submit Team");
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
@@ -71,20 +61,18 @@ public class AddTeamFrame extends JFrame {
 	
 		f.add(p4);
 		f.add(p1);
-		f.add(p2);
 		f.add(p3);
 		f.revalidate();
 		f.repaint();
 	}
 	private void removePanels() {
 		f.remove(p1);
-		f.remove(p2);
 		f.remove(p3);
 		f.remove(p4);
 	}
 	private void updateFile() {
 		try {
-				FileOutputStream fileOut = new FileOutputStream("data.txt");
+				FileOutputStream fileOut = new FileOutputStream("data.ser");
 				ObjectOutputStream out = new ObjectOutputStream(fileOut);
 				out.writeObject(tournaments);
 				out.close();

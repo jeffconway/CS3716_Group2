@@ -57,21 +57,30 @@ public class TournamentInit {
       	f = new JFrame("Tournament Organizer");
       	createFrame();
       	f.setVisible(true);
+		FileInputStream fileIn = null;
+		ObjectInputStream in = null;
 		try {
-			FileInputStream fileIn = new FileInputStream("data.txt");
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			tournaments = ((java.util.List<Tournament>) in.readObject());
-			in.close();
-			fileIn.close();
+			fileIn = new FileInputStream("data.ser");
+			in = new ObjectInputStream(fileIn);
+			tournaments = (ArrayList<Tournament>) in.readObject();
 		}
 		catch(FileNotFoundException e) {
 			e.printStackTrace();		
 		}
-		catch(IOException e) {
-			e.printStackTrace();		
-		}
+		catch(IOException e) {}
 		catch(ClassNotFoundException e) {
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (in != null) {
+					in.close();
+					fileIn.close();
+				}
+			}
+			catch(IOException e) {
+				e.printStackTrace();		
+			}
 		}
  	} 
 	public TournamentInit(JFrame fr,java.util.List<Tournament> to) {
