@@ -10,12 +10,11 @@ class TeamFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	JLabel name,deadline;
 	JButton b1,b2,b3,b4;
-	JComboBox<?> cb;
+	JComboBox<String> cb;
 	JPanel p1,p2,p3,p4;
-	AddTeamFrame f1;
 	static Tournament to;
 	static java.util.List<Tournament> tournaments;
-	private JFrame f;
+	private JFrame f,f1,f2;
 	
 	TeamFrame(Tournament t,JFrame fr,java.util.List<Tournament> tour) {
 		f = fr;
@@ -39,7 +38,7 @@ class TeamFrame extends JFrame {
 		for (int i=0; i<t.getTeams().size(); i++) {
 			names[i] = t.getTeams().get(i).getTeamName();
 		}
-		cb = new JComboBox<Object>(names);
+		cb = new JComboBox<String>(names);
 		b1 = new JButton("Add Team");
 		b1.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
@@ -50,7 +49,9 @@ class TeamFrame extends JFrame {
 		b2 = new JButton("Edit Team");
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
-				//edit team here
+				int index = cb.getSelectedIndex();
+				removePanels();
+				f2 = new EditTeamFrame(index,to,f,tournaments);
 		   	}          
 		});
 		b3 = new JButton("Back");
