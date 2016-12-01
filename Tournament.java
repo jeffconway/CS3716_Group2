@@ -116,7 +116,8 @@ public class Tournament implements Serializable{					/* class to create a tourna
 		}
 	}
 
-	public void createMatches(){									/* creates the matches of the tournament */
+	public void setMatches(List<Match> m){									/* creates the matches of the tournament */
+		matches = m;
 	}
 
 	public void editMatches(){										/* edits the matches of the tournament */
