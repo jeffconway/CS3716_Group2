@@ -30,6 +30,7 @@ public class ScheduleFrame extends JFrame {
 		f.setTitle("Schedule Frame");
 		f.setSize(600,400);
 		p1 = new JPanel();
+		p2 = new JPanel();
 		p3 = new JPanel();
 		j1 = new JLabel("Single Elimination Schedule: ");
 		j2 = new JLabel("");
@@ -45,7 +46,6 @@ public class ScheduleFrame extends JFrame {
 		f.add(p3);
 		
 		for (int i=0; i<tt.getMatches().size(); i++) { 
-			p2 = new JPanel();
 			names[i] =  tt.getMatches().get(i).getTeam1().getTeamName();    // get the name of teams and store them in the name list
 			names[i+1] =  tt.getMatches().get(i).getTeam2().getTeamName();
 			j2.setText(j2.getText()+" Match ["+names[i]+" .vs. "+names[i+1]+"] ");       // display each of team in the text area  to be displayed     
