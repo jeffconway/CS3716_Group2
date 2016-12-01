@@ -10,6 +10,7 @@ public class Tournament implements Serializable{					/* class to create a tourna
 
 	List<Team> teams = new ArrayList<Team>();						/* the teams in the tournament */
 	List<Match> matches = new ArrayList<Match>();					/* the matches in the tournament */
+	Boolean matched;
 	Format format;													/* the format of the tournament */
 	String deadline, name, maxTeams, location;						/* the deadline to sign up for the tournament and the name of the tournament */
 	int numDivs;

@@ -8,7 +8,7 @@ public class AddTeamFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JLabel l1, errorLabel;
+	JLabel l1;
 	JTextField t1;
 	JButton b1,b2,b3;
 	JPanel p1,p3,p4;
@@ -33,7 +33,6 @@ public class AddTeamFrame extends JFrame {
 		p3.setLayout(new FlowLayout());
 		p4 = new JPanel();
 		p4.setLayout(new FlowLayout());
-		errorLabel = new JLabel("");
 
 		l1 = new JLabel("Team Name: ");
 		t1 = new JTextField(20);
@@ -42,17 +41,12 @@ public class AddTeamFrame extends JFrame {
 		b2 = new JButton("Submit Team");
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
-		   		if (t1.getText().trim().isEmpty()) {
-		   			errorLabel.setForeground(Color.RED);
-					errorLabel.setText("Must fill out all fields to Add Team!");
-		   		} else {
 				String name = t1.getText().trim();
 				te.setTeamName(name);
 				to.addTeam(te);
 				updateFile();
 				removePanels();
 				f2 = new TeamFrame(to,f,tournaments);
-		   		}
 		   	 }          
 		 });
 		b3 = new JButton("Back");
@@ -64,7 +58,6 @@ public class AddTeamFrame extends JFrame {
 		});
 		p4.add(b3);
 		p3.add(b2);
-		p3.add(errorLabel);
 	
 		f.add(p4);
 		f.add(p1);

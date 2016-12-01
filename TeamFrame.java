@@ -48,8 +48,10 @@ class TeamFrame extends JFrame {														/* class for creating and displayi
 		b2.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				int index = cb.getSelectedIndex();
-				removePanels();
-				f2 = new EditTeamFrame(index,to,f,tournaments);
+				if (index != -1) {
+					removePanels();
+					f2 = new EditTeamFrame(index,to,f,tournaments);
+				}
 		   	}          
 		});
 		b3 = new JButton("Back");														/*back button*/
