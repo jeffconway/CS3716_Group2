@@ -12,14 +12,11 @@ public class ScheduleFrame extends JFrame {
     Match m1;
 	SingleElimination s1;
 	JFrame f;
-	
-	Tournament tt;
+	static java.util.List<Tournament> to;
 	TournamentFrame tou1;   // JRadioButton single, division;
 	
 	
-	public ScheduleFrame(SingleElimination s,JFrame fra){   // layout will be set up later
-		
-		s1=s;
+	public ScheduleFrame(Tournament tt,JFrame fra,java.util.List<Tournament> to){   // layout will be set up later
 		f=fra;
 
 		f.setTitle("Schedule Frame");
@@ -35,7 +32,7 @@ public class ScheduleFrame extends JFrame {
 		//f1.setText.toString(s1.getSchedule(tt));
 
 		String[] names = new String[tt.getTeams().size()];    // 
-		
+		SingleElimination s = new SingleElimination();
 		s.setSchedule(tt);   // set the schedule for single elimination
 		
 		for (int i=0; i<tt.getTeams().size(); i++) { 
@@ -49,6 +46,8 @@ public class ScheduleFrame extends JFrame {
 		
 		p1.add(f1);
 		f.add(p1);
+		f.revalidate();
+		f.repaint();
 	}
 	
 	

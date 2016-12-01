@@ -11,7 +11,8 @@ class ListFrame extends JFrame {												/*class for creating and displaying 
  	JLabel l1,l2;
 	static int i;
 	static java.util.List<Tournament> to;
-	private JFrame fra;
+	static Tournament tt;
+	private JFrame fra,ff;
 
  	ListFrame(JFrame fr,java.util.List<Tournament> tournaments) {				/*creates the frame to display the tournaments*/
 		fra = fr;
@@ -39,14 +40,24 @@ class ListFrame extends JFrame {												/*class for creating and displaying 
 			l2 = new JLabel("Deadline: \t"+tournaments.get(i).getDeadline());
 			p1.add(l2);
 			JButton b = new JButton("Edit Tournament");							/*edit tournament button (one for each tournament)*/
-			p1.add(b);
+			JButton bb = new JButton("View Schedule");
 			b.addActionListener(new ActionListener() {
-				final int j=i+1;
+				final int j=i;
 		   		public void actionPerformed(ActionEvent e) {
 					removePanels();
-					f = new TeamFrame(to.get(j-1),fra,to);
+					f = new TeamFrame(to.get(j),fra,to);
 		   	 	}          
 		  	});
+			bb.addActionListener(new ActionListener() {
+				final int j=i;
+		   		public void actionPerformed(ActionEvent e) {
+					removePanels();
+					tt = to.get(j);
+					ff = new ScheduleFrame(tt,fra,to);
+		   	 	}          
+		  	});
+			p1.add(b);
+			p1.add(bb);
 			listPane.add(p1);
 		}
 		Component glue = Box.createVerticalGlue();
