@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
 
-public class Team implements Serializable{				/* class to create a team object */
+public class Team implements Serializable,Cloneable{				/* class to create a team object */
 
 	String name;										/* name of team */
 	List<Player> players = new ArrayList<Player>();		/* list of player names */
@@ -80,5 +80,8 @@ public class Team implements Serializable{				/* class to create a team object *
 
 	public void removeLoss(){							/* remove a loss */
 		losses--;
+	}
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }
