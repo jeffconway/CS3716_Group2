@@ -39,7 +39,10 @@ public class ScheduleFrame extends JFrame {
 
 		String[] names = new String[tt.getTeams().size()];    // 
 		SingleElimination s = new SingleElimination();
-		s.setSchedule(tt);   // set the schedule for single elimination
+		if (!tt.getMatched()) {
+			tt.setMatched(true);
+			s.setSchedule(tt);   // set the schedule for single elimination
+		}
 		
 		p1.add(j1);
 		p3.add(ba);

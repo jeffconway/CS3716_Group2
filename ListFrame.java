@@ -44,16 +44,24 @@ class ListFrame extends JFrame {												/*class for creating and displaying 
 			b.addActionListener(new ActionListener() {
 				final int j=i;
 		   		public void actionPerformed(ActionEvent e) {
-					removePanels();
-					f = new TeamFrame(to.get(j),fra,to);
+					tt = to.get(j);
+					if (tt.getEditable()) {
+						if (!tt.isDeadline()) {
+							tt.setEditable(false);
+						}
+						removePanels();
+						f = new TeamFrame(to.get(j),fra,to);
+					}
 		   	 	}          
 		  	});
 			bb.addActionListener(new ActionListener() {
 				final int j=i;
 		   		public void actionPerformed(ActionEvent e) {
-					removePanels();
 					tt = to.get(j);
-					ff = new ScheduleFrame(tt,fra,to);
+					if (!tt.isDeadline()) {
+						removePanels();
+						ff = new ScheduleFrame(tt,fra,to);
+					}
 		   	 	}          
 		  	});
 			p1.add(b);

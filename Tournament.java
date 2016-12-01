@@ -3,18 +3,21 @@ import java.util.List;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 import java.io.*;
 
 public class Tournament implements Serializable{					/* class to create a tournament object with a list of teams and a list of matches, as well as other details */
 
 	List<Team> teams = new ArrayList<Team>();						/* the teams in the tournament */
 	List<Match> matches = new ArrayList<Match>();					/* the matches in the tournament */
+	boolean matched,editable;
 	Format format;													/* the format of the tournament */
 	String deadline, name, maxTeams, location;						/* the deadline to sign up for the tournament and the name of the tournament */
 	int numDivs;
 
 	public Tournament(String deadline, String name, String maxTeams, String location, int numDivs){		/* constructor for tournament */
+		matched = false;
+		editable = true;
 		this.deadline = deadline;
 		this.name = name;
 		this.maxTeams = maxTeams;
@@ -33,7 +36,18 @@ public class Tournament implements Serializable{					/* class to create a tourna
 	public List<Match> getMatches(){								/* get the matches of the tournament */
 		return matches;
 	}
-
+	public boolean getMatched() {
+		return matched;
+	}
+	public void setMatched(boolean m) {
+		matched = m;
+	}
+	public boolean getEditable() {
+		return editable;
+	}
+	public void setEditable(boolean e) {
+		editable = e;
+	}
 	public Format getFormat(){										/* get the format of the tournament */
 		return format;
 	}
@@ -102,7 +116,8 @@ public class Tournament implements Serializable{					/* class to create a tourna
 		Date currentDate = new Date();		
 		try{
 			startDate = df.parse(deadline);
-			System.out.println(startDate);
+			Calendar cal = Calendar.getInstance();
+			currentDate = df.parse(df.format(cal.getTime()));
 			if(startDate.after(currentDate)){
 				return true;
 			}
