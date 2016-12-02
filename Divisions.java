@@ -38,7 +38,7 @@ public class Divisions implements Format, Serializable {							/*divisions class
 
 		List<Match> matches = new ArrayList<Match>();
 		int group_per_players = randTeamList.size() / tournament.getNumDivs(); 		/* number of players in each division */
-		int g = group_per_players; // random
+		int g = group_per_players;
 
 		for (int j = 0; j < g; j++) {												/*assigns the list of randomly ordered teams to matches*/
 			for (int i = 0; i < group_per_players; i = i + 2) {
