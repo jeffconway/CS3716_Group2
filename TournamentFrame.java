@@ -3,10 +3,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 
-public class TournamentFrame extends JFrame {
-	/**
-	 * 
-	 */
+public class TournamentFrame extends JFrame {										/*class to create and display the tournament frame*/
+
 	private static final long serialVersionUID = 1L;
 	JTextField name,deadline, location, maxTeams, numDiv;
 	JLabel nLabel,dLabel, lLabel, mLabel, errorLabel, fLabel, divLabel;
@@ -16,7 +14,7 @@ public class TournamentFrame extends JFrame {
 	static java.util.List<Tournament> to;
 	private JFrame f;
 
-	TournamentFrame(JFrame fr,java.util.List<Tournament> tour) {
+	public TournamentFrame(JFrame fr,java.util.List<Tournament> tour) {					/*constructor*/
 		to = tour;
 		f = fr;
 		nLabel = new JLabel("Enter Name: ");
@@ -32,7 +30,7 @@ public class TournamentFrame extends JFrame {
         single = new JRadioButton("Single Elimination");
 		division = new JRadioButton("Divisions");
         divLabel = new JLabel("");
-        
+
 		submit = new JButton("Submit");
 		errorLabel = new JLabel("");
 
@@ -55,11 +53,11 @@ public class TournamentFrame extends JFrame {
 				}
 			}
 		});
-        
+
         ButtonGroup group = new ButtonGroup();
         group.add(single);
         group.add(division);
-        
+
 		p1 = new JPanel();
 		p1.setLayout(new FlowLayout());
 		p2 = new JPanel();
@@ -76,21 +74,21 @@ public class TournamentFrame extends JFrame {
       	fr.setLayout(new GridLayout(5, 1));
       	
 		submit.addActionListener(new ActionListener() {
-       		public void actionPerformed(ActionEvent e) {
+       		public void actionPerformed(ActionEvent e) {										/*checks if fields are empty*/
        			if ((name.getText().trim().isEmpty()) || (deadline.getText().trim().isEmpty()) || (location.getText().trim().isEmpty()) || (maxTeams.getText().trim().isEmpty())) {
        				errorLabel.setForeground(Color.RED);
-       				errorLabel.setText("Must fill out all fields to create Tournament!");
+       				errorLabel.setText("Must fill out all fields to create Tournament!"); 		/*warning if their is an empty field*/
        				p3.add(errorLabel);
        			}
-       			else {
+       			else {																			/*get and save the input*/
 					String n = name.getText();
 					String d = deadline.getText();
 					String l = location.getText();
-					String m = maxTeams.getText();		
+					String m = maxTeams.getText();
 					int nd = 1;
 					if (division.isSelected()) {
 						nd = Integer.parseInt(numDiv.getText()); 
-					 }			
+					}
 					Tournament t = new Tournament(d,n,l,m,nd);
 					to.add(t);
 					updateFile();
@@ -99,28 +97,28 @@ public class TournamentFrame extends JFrame {
        			}
        	 	}          
       	});
-		ba = new JButton("Back");
+		ba = new JButton("Back");																/*back button*/
 		ba.addActionListener(new ActionListener() {
 		   	public void actionPerformed(ActionEvent e) {
 				removePanels();
 				TournamentInit lf = new TournamentInit(f,to);
-		   	}          
+		   	}
 		});
 
 		p4.add(ba);
-		p1.add(nLabel);		
-		p1.add(name);	
-		p2.add(dLabel);	
+		p1.add(nLabel);
+		p1.add(name);
+		p2.add(dLabel);
 		p2.add(deadline);
-		p1.add(lLabel);		
-		p1.add(location);	
-		p2.add(mLabel);	
+		p1.add(lLabel);
+		p1.add(location);
+		p2.add(mLabel);
 		p2.add(maxTeams);
 		p2.add(fLabel);
 		p21.add(single);
 		p21.add(division);
 		p21.add(divLabel);
-		p3.add(submit);	
+		p3.add(submit);
 		p3.add(errorLabel);
 
 		f.add(p4);
@@ -132,14 +130,14 @@ public class TournamentFrame extends JFrame {
 		f.repaint();
 	}
 
-	private void removePanels() {
+	private void removePanels() {															/*method to remove panels so new panels can be added*/
 		f.remove(p1);
 		f.remove(p2);
 		f.remove(p21);
 		f.remove(p3);
 		f.remove(p4);
 	}
-	private void updateFile() {
+	private void updateFile() {																/*method to update the file that stores the tournaments	*/
 		try {
 				FileOutputStream fileOut = new FileOutputStream("data.ser");
 				ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -148,10 +146,10 @@ public class TournamentFrame extends JFrame {
 				fileOut.close();
 			}
 			catch(FileNotFoundException ex) {
-				ex.printStackTrace();		
+				ex.printStackTrace();
 			}
 			catch(IOException ex) {
-				ex.printStackTrace();		
+				ex.printStackTrace();
 			}
 	}
 }
