@@ -1,6 +1,7 @@
 import java.util.List;
 
 public interface Format{
+	public String getType();
 
 	public void setSchedule(Tournament tournament);			//set the schedule for the tournament
 

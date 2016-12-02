@@ -32,16 +32,26 @@ public class ScheduleFrame extends JFrame {
 		p1 = new JPanel();
 		p2 = new JPanel();
 		p3 = new JPanel();
-		j1 = new JLabel("Single Elimination Schedule: ");
 		j2 = new JLabel("");
 		
 		//f1.setText.toString(s1.getSchedule(tt));
 
-		String[] names = new String[tt.getTeams().size()];    // 
-		SingleElimination s = new SingleElimination();
-		if (!tt.getMatched()) {
-			tt.setMatched(true);
-			s.setSchedule(tt);   // set the schedule for single elimination
+		String[] names = new String[tt.getTeams().size()]; 
+		if (tt.getFormat().getType().equals("s")) {
+			j1 = new JLabel("Single Elimination Schedule: ");
+			SingleElimination s = new SingleElimination();
+			if (!tt.getMatched()) {
+				tt.setMatched(true);
+				s.setSchedule(tt);   // set the schedule for single elimination
+			}
+		}
+		else if (tt.getFormat().getType().equals("d")) {
+			j1 = new JLabel("Divisions Schedule: ");
+			Divisions d = new Divisions();
+			if (!tt.getMatched()) {
+				tt.setMatched(true);
+				d.setSchedule(tt);   // set the schedule for divisions
+			}
 		}
 		
 		p1.add(j1);

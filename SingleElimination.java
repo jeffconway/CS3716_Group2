@@ -37,7 +37,7 @@ public class SingleElimination implements Format,Serializable{
 				matches.add(match);
 				i = i+2;
 			} else {
-				randTeamList.remove(rand.nextInt(teamList.size()));
+				randTeamList.remove(rand.nextInt(randTeamList.size()));
 				continue;
 			}
 		}
@@ -55,5 +55,7 @@ public class SingleElimination implements Format,Serializable{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	public String getType() {
+		return "s";
+	}
 }
