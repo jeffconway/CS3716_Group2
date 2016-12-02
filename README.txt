@@ -1,5 +1,5 @@
-Team memeber point distrubution:
-	even points to all memebers
+Team member point distrubution:
+	even points to all members
 
 To compile & run:
 	1. Download all files into a directory.
@@ -10,7 +10,7 @@ To compile & run:
 
 
 Main Menu:
-	1. Create tournament button brings you 
+	1. Create tournament button brings you to the create tournament menu
 	2. Check tournament button brings you to a list of tournaments
 
 Create tournament menu:
@@ -31,7 +31,7 @@ Edit tournament menu:
 	4. edit team brings you to the edit team menu
 
 Add team menu:
-	1. backn button to go back
+	1. back button to go back
 	2. enter name of team and submit to complete team
 
 Edit team menu:
