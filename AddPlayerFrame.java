@@ -3,10 +3,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 
-public class AddPlayerFrame extends JFrame {
-	/**
-	 * 
-	 */
+public class AddPlayerFrame extends JFrame {									/* class to create a frame to enter/edit player details */
+
 	private static final long serialVersionUID = 1L;
 	JLabel l1, l2, l3, l4, l5, errorLabel;
 	JTextField t1, t2, t3, t4, t5;
@@ -19,7 +17,7 @@ public class AddPlayerFrame extends JFrame {
 	static java.util.List<Tournament> tournaments;
 	private JFrame f;
 
-	public AddPlayerFrame(int p, int index, Tournament tour, JFrame fr, java.util.List<Tournament> tou) {
+	public AddPlayerFrame(int p, int index, Tournament tour, JFrame fr, java.util.List<Tournament> tou) {		/*constructor for the player frame, used when a player is being edited*/
 		f = fr;
 		to = tour;
 		tournaments = tou;
@@ -27,7 +25,7 @@ public class AddPlayerFrame extends JFrame {
 		generateFrame(p);
 	}
 
-	public AddPlayerFrame(int index, Tournament tour, JFrame fr, java.util.List<Tournament> tou) {
+	public AddPlayerFrame(int index, Tournament tour, JFrame fr, java.util.List<Tournament> tou) {				/*constructor for the player frame, used when a player is being added*/
 		f = fr;
 		to = tour;
 		tournaments = tou;
@@ -35,7 +33,7 @@ public class AddPlayerFrame extends JFrame {
 		generateFrame(-1);
 	}
 
-	public void generateFrame(int m) {
+	public void generateFrame(int m) {												/* method to create the frame */
 		pi = m;
 		te = to.getTeams().get(ind);
 		f.setTitle("Add Player");
@@ -67,29 +65,29 @@ public class AddPlayerFrame extends JFrame {
 		}
 		p1.add(l1);
 		p1.add(t1);
-		l2 = new JLabel("Age: ");
+		l2 = new JLabel("Age: ");														/*player age field*/
 		p1.add(l2);
 		p1.add(t2);
-		l3 = new JLabel("Height (cm): ");
+		l3 = new JLabel("Height (cm): ");												/*player height field*/
 		p2.add(l3);
 		p2.add(t3);
-		l4 = new JLabel("Weight (lbs): ");
+		l4 = new JLabel("Weight (lbs): ");												/*player wieght field*/
 		p2.add(l4);
 		p2.add(t4);
-		l5 = new JLabel("Gender (M/F/other): ");
+		l5 = new JLabel("Gender (M/F/other): ");										/*player gender field*/
 		p2.add(l5);
 		p2.add(t5);
 		errorLabel = new JLabel("");
-		b1 = new JButton("Submit Player");
+		b1 = new JButton("Submit Player");												/*submit button*/
 		b1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if ((t1.getText().trim().isEmpty()) || (t2.getText().trim().isEmpty())
+				if ((t1.getText().trim().isEmpty()) || (t2.getText().trim().isEmpty())	/*checks if all fields are filled*/
 						|| (t3.getText().trim().isEmpty()) || (t4.getText().trim().isEmpty())
 						|| (t5.getText().trim().isEmpty())) {
 					errorLabel.setForeground(Color.RED);
-					errorLabel.setText("Must fill out all fields to Add Player!");
+					errorLabel.setText("Must fill out all fields to Add Player!");		/*warning if a field is empty*/
 					p3.add(errorLabel);
-				} else {
+				} else {																/*get the input from fields*/
 
 					String name = t1.getText().trim();
 					int age = Integer.parseInt(t2.getText().trim());
@@ -116,7 +114,7 @@ public class AddPlayerFrame extends JFrame {
 			}
 		});
 
-		b2 = new JButton("Back");
+		b2 = new JButton("Back");														/*back button*/
 		b2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				removePanels();
@@ -135,14 +133,14 @@ public class AddPlayerFrame extends JFrame {
 		f.repaint();
 	}
 
-	private void removePanels() {
+	private void removePanels() {														/*method to remove panels so the new panels can be added*/
 		f.remove(p1);
 		f.remove(p2);
 		f.remove(p3);
 		f.remove(p4);
 	}
 
-	private void updateFile() {
+	private void updateFile() {															/*method to update the file that stores the tournaments*/
 		try {
 			FileOutputStream fileOut = new FileOutputStream("data.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
