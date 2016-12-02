@@ -1,7 +1,7 @@
 Git hub link:
 	https://github.com/NLScotty/CS3716_Group2/tree/master
 
-Team member point distrubution:
+Team member point distribution:
 	even points to all members
 
 To compile & run:
