@@ -1,5 +1,8 @@
-Team memeber point distrubution:
-	even points to all memebers
+Git hub link:
+	https://github.com/NLScotty/CS3716_Group2/tree/master
+
+Team member point distrubution:
+	even points to all members
 
 To compile & run:
 	1. Download all files into a directory.
@@ -10,7 +13,7 @@ To compile & run:
 
 
 Main Menu:
-	1. Create tournament button brings you 
+	1. Create tournament button brings you to the create tournament menu
 	2. Check tournament button brings you to a list of tournaments
 
 Create tournament menu:
@@ -29,9 +32,10 @@ Edit tournament menu:
 	2. Delete button deletes the tournament	
 	3. Add team brings you to the add team menu
 	4. edit team brings you to the edit team menu
+	5. If the deadline is passed, you can only edit the tournament once
 
 Add team menu:
-	1. backn button to go back
+	1. back button to go back
 	2. enter name of team and submit to complete team
 
 Edit team menu:
@@ -44,3 +48,4 @@ Add player menu:
  
 View schedule menu:
 	1. shows the matches for the tournament
+	2. if the deadline is not passed, you cannot view the schedule
