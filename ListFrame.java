@@ -40,7 +40,7 @@ class ListFrame extends JFrame {												/*class for creating and displaying 
 			l2 = new JLabel("Deadline: \t"+tournaments.get(i).getDeadline());
 			p1.add(l2);
 			JButton b = new JButton("Edit Tournament");							/*edit tournament button (one for each tournament)*/
-			JButton bb = new JButton("View Schedule");
+			JButton bb = new JButton("View Schedule");							/*view schedule button*/
 			b.addActionListener(new ActionListener() {
 				final int j=i;
 		   		public void actionPerformed(ActionEvent e) {
